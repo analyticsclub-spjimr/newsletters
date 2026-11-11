@@ -15,7 +15,7 @@
  * Every new issue: change ISSUE_URL only. The subject line is read from the issue's email.html.
  */
 
-const ISSUE_URL = 'https://YOUR-GITHUB-USERNAME.github.io/newsletters/dispatch/issue-01/'; // the issue's folder, ending with /
+const ISSUE_URL = 'https://analyticsclub-spjimr.github.io/newsletters/dispatch/issue-01/'; // the issue's folder, ending with /
 const TO_LIST = 'PUT-THE-MAILING-LIST-ADDRESS-HERE';  // fill this in inside Apps Script only, never in the GitHub copy
 const FROM_NAME = 'Analytics Club, SPJIMR';
 

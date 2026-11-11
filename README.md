@@ -28,11 +28,11 @@ Issues are numbered rather than dated, so nothing breaks if the schedule moves f
 
 1. Create a repository, for example `newsletters`, and upload everything in this folder.
 2. Go to Settings → Pages. Under "Build and deployment", choose "Deploy from a branch", then `main` and `/ (root)`.
-3. After a minute or two the site is live at `https://YOUR-USERNAME.github.io/newsletters/`.
+3. After a minute or two the site is live at `https://analyticsclub-spjimr.github.io/newsletters/`.
 
 Links for issue 1:
-- Full issue: `https://YOUR-USERNAME.github.io/newsletters/dispatch/issue-01/`
-- Email: `https://YOUR-USERNAME.github.io/newsletters/dispatch/issue-01/email.html`
+- Full issue: `https://analyticsclub-spjimr.github.io/newsletters/dispatch/issue-01/`
+- Email: `https://analyticsclub-spjimr.github.io/newsletters/dispatch/issue-01/email.html`
 
 Once you know the address, put it in `SITE_URL` in `_build/config.py` and run the build again. WhatsApp and LinkedIn will then show the cover when someone shares an issue link.
 

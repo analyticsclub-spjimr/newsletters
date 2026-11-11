@@ -2,7 +2,7 @@
 
 # Your GitHub Pages address, ending with /. For example: 'https://yourname.github.io/newsletters/'
 # Fill this in once the repo is live. It lets WhatsApp and LinkedIn show the cover picture when someone shares a link.
-SITE_URL = ''
+SITE_URL = 'https://analyticsclub-spjimr.github.io/newsletters/'
 
 CLUB = 'Analytics Club'
 SCHOOL_SHORT = 'SPJIMR'

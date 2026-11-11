@@ -6,7 +6,7 @@
  * If your dashboard is https://analyticsclub-spjimr.goatcounter.com, the code is analyticsclub-spjimr.
  * Leave it empty ('') to switch counting off.
  */
-var GOATCOUNTER_CODE = '';
+var GOATCOUNTER_CODE = 'analyticsclub-spjimr';
 
 (function () {
   if (!GOATCOUNTER_CODE) return;
