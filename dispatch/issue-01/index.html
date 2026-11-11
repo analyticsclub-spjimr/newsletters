@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiSPatch · Issue 1 · Analytics Club, SPJIMR</title>
+<meta name="description" content="Nine AI stories that will shape the jobs you’re heading into. DiSPatch from the Analytics Club, SPJIMR.">
+<meta property="og:title" content="DiSPatch · Issue 1">
+<meta property="og:description" content="Nine AI stories that will shape the jobs you’re heading into.">
+<meta name="theme-color" content="#F7ECE8">
+<meta name="color-scheme" content="light">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F7ECE8}
+.pg{background:#F7ECE8;color:#14161B;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.5}
+.pg a{color:#A82A16}
+.pg img{display:block;max-width:100%;height:auto}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.top{background:#fff;border-bottom:1px solid #ECE4DF}
+.top .wrap{max-width:1120px;display:flex;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px}
+.logo{position:relative;flex:none;display:inline-block;width:44px;height:44px;border-radius:10px;background:#EFE8F6;overflow:hidden}
+.logo .ph{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font:700 14px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.3px;color:#522381}
+.pg .logo img{position:relative;width:44px;height:44px;border-radius:10px}
+.club b{display:block;font-size:16px;line-height:1.2}
+.club span{display:block;font-size:12px;letter-spacing:2px;color:#6B6F78}
+.mast{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:34px}
+.wordmark{display:block;font-family:'Exo 2','Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:40px;line-height:1.05;letter-spacing:-.5px}
+.wordmark span{color:#C8361F}
+.tagline{display:block;margin-top:6px;font-size:16px;color:#6B6F78}
+.stamp{flex:none;display:inline-block;transform:rotate(-7deg);border:3px double #C8361F;border-radius:4px;padding:7px 12px;color:#C8361F;font-family:'Courier New',Courier,monospace;font-size:14px;font-weight:700;letter-spacing:3px;line-height:1.1;text-align:center}
+.dateline{display:flex;justify-content:space-between;gap:12px;margin-top:20px;padding:7px 0;border-top:1px solid #14161B;border-bottom:3px double #14161B;font-family:Georgia,'Times New Roman',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#14161B}
+h1{margin:30px 0 0;font-size:clamp(28px,6.4vw,46px);line-height:1.12;letter-spacing:-.025em}
+.meta{margin:12px 0 0;font-size:15px;color:#6B6F78}
+.cover{position:relative;margin-top:34px;color:#C8361F}
+.cover img{width:100%;border-radius:14px}
+.c{position:absolute;width:16px;height:16px;border:0 solid currentColor}
+.c.tl{top:-8px;left:-8px;border-top-width:2px;border-left-width:2px}
+.c.tr{top:-8px;right:-8px;border-top-width:2px;border-right-width:2px}
+.c.bl{bottom:-8px;left:-8px;border-bottom-width:2px;border-left-width:2px}
+.c.br{bottom:-8px;right:-8px;border-bottom-width:2px;border-right-width:2px}
+.mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;letter-spacing:1px}
+.label{font-size:12px;color:#6B6F78}
+.numbers{margin-top:34px;background:#fff;border:1px solid #ECE4DF;border-radius:16px;padding:20px 22px}
+.numgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:14px}
+.num b{display:block;font-size:30px;line-height:1.1;letter-spacing:-.5px;color:#C8361F}
+.num span{display:block;margin-top:4px;font-size:14px;line-height:1.4;color:#4A4E57}
+.toc{margin-top:32px}
+.toc ol{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+.toc a{display:flex;align-items:center;gap:12px;min-height:48px;padding:10px 0;border-top:1px solid #E8DCD5;color:#14161B;text-decoration:none;font-size:16px;font-weight:600}
+.n{font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;font-size:13px;font-weight:400;color:#A82A16}
+.stories{margin-top:28px;background:#fff;border:1px solid #ECE4DF;border-radius:20px;padding:4px 28px}
+article{padding:30px 0;border-bottom:1px solid #EEECE7;scroll-margin-top:12px}
+figure{margin:0 0 18px}
+figure img{width:100%;border-radius:12px}
+.tagrow{display:flex;align-items:center;gap:10px}
+.tagrow .n{color:#6B6F78}
+.tag{background:#FCEDEA;color:#A82A16;border-radius:999px;padding:4px 10px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;font-size:11px;letter-spacing:.8px}
+article h2{margin:12px 0 0;font-size:clamp(22px,4.8vw,25px);line-height:1.28;letter-spacing:-.01em}
+.body{margin:12px 0 0;font-size:17px;line-height:1.65;color:#3B3F48}
+.why{margin-top:16px;background:#FAF8F6;border:1px solid #F0E9E5;border-radius:12px;padding:16px 18px}
+.why h3{display:flex;align-items:center;gap:6px;margin:0;font-size:14px;color:#A82A16}
+.dot{flex:none;width:6px;height:6px;border-radius:50%;background:#C8361F}
+.why p{margin:6px 0 0;font-size:16.5px;line-height:1.6}
+.sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.sources a{display:inline-flex;align-items:center;gap:4px;min-height:42px;padding:8px 14px;border:1px solid #E4E1DB;border-radius:999px;color:#4A4E57;font-size:14px;text-decoration:none}
+.try{margin:28px 0;background:#FCEDEA;border-radius:16px;padding:22px 24px}
+.try p{margin:8px 0 0;font-size:17px;line-height:1.6}
+.foot{margin-top:44px;background:#14161B;color:#fff}
+.foot .wrap{padding-top:36px;padding-bottom:40px}
+.foot .big{margin:0;font-size:20px;line-height:1.35;font-weight:700}
+.foot p{margin:8px 0 0;font-size:16px;line-height:1.55;color:#C9CCD3}
+.follow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;font-size:15px;color:#A3A7B0}
+.follow span{flex-basis:100%}
+.follow a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #3A3D45;border-radius:999px;color:#fff;font-weight:600;text-decoration:none}
+.fine{margin-top:22px!important;padding-top:16px;border-top:1px solid #2A2D35;font-size:13px!important;color:#A3A7B0!important}
+.listen{display:none;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:1.5px solid #C8361F;border-radius:999px;background:#fff;color:#A82A16;font:600 14px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer}
+.can-listen .listen{display:inline-flex}
+.listen .ico::before{content:"▶";font-size:11px}
+.listen[aria-pressed="true"]{background:#C8361F;color:#fff}
+.listen[aria-pressed="true"] .ico::before{content:"■";font-size:12px}
+.listen-all{margin-top:16px;min-height:46px;padding:0 18px;font-size:15px}
+.tagrow .listen{margin-left:auto}
+.reading{background:#FFE9A8;border-radius:3px;box-shadow:0 0 0 3px #FFE9A8}
+.totop{display:inline-block;margin-top:14px;font-size:15px;font-weight:600;color:#FF8A70;text-decoration:none}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .mast{padding-top:26px}
+  .wordmark{font-size:36px}
+  .tagline{font-size:16px}
+  .stamp{font-size:12px;letter-spacing:2px;padding:6px 9px}
+  .dateline{font-size:12px;letter-spacing:1.5px}
+  h1{font-size:30px}
+  .meta{font-size:16px}
+  .cover{margin-top:28px}
+  .label{font-size:12px}
+  .numbers{padding:18px}
+  .numgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 14px}
+  .num b{font-size:28px}
+  .num span{font-size:15px}
+  .toc ol{grid-template-columns:1fr}
+  .toc a{font-size:17px}
+  .stories{padding:2px 18px;border-radius:16px}
+  article{padding:26px 0}
+  .tag{font-size:12px}
+  article h2{font-size:23px}
+  .body{font-size:18px}
+  .why h3{font-size:15px}
+  .why p{font-size:17px}
+  .sources a{font-size:15px}
+  .try{padding:20px}
+  .try p{font-size:18px}
+  .foot p{font-size:17px}
+  .listen{font-size:15px;min-height:44px}
+}
+</style>
+<script src="../../assets/analytics.js" defer></script>
+</head>
+<body>
+<div class="pg" id="top">
+<header class="top"><div class="wrap"><span class="logo"><span class="ph" aria-hidden="true">AIC</span><img src="../../assets/logo-mark.png" alt="Analytics Club logo" width="44" height="44" onerror="this.remove()"></span><div class="club"><b>Analytics Club</b><span>SPJIMR</span></div></div></header>
+<main class="wrap">
+  <div class="mast">
+    <div><span class="wordmark">Di<span style="color:#C8361F">SP</span>atch</span><span class="tagline">AI news, every two weeks.</span></div>
+    <span class="stamp">FIRST<br>ISSUE</span>
+  </div>
+  <div class="dateline"><span>Vol. 1 · No. 1</span><span>November 2026</span></div>
+  <h1>Nine AI stories that will shape the jobs you’re heading into</h1>
+  <p class="meta">A six-minute read, compiled by Amal Francis and Aayush Kalia.</p>
+  <button class="listen listen-all" type="button" data-label="Listen to this issue" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen to this issue</span></button>
+  <div class="cover"><span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span><img src="images/cover.jpg" alt="A broadcast tower topped with the Analytics Club logo, sending news cards to a person drawn in glowing lines, under a band of dashboards and falling code" width="1200" height="800"></div>
+  <section class="numbers" aria-label="The fortnight in numbers"><div class="mono label">THE FORTNIGHT IN NUMBERS</div><div class="numgrid"><div class="num"><b>32%</b><span>rise in AI and machine learning hiring in India</span></div><div class="num"><b>$2.3T</b><span>wiped off the Nasdaq 100 in one day</span></div><div class="num"><b>948</b><span>Linux security flaws found by OpenAI’s agents</span></div><div class="num"><b>6 hours</b><span>to report an AI agent incident to CERT-In</span></div></div></section>
+  <nav class="toc" aria-label="In this issue"><div class="mono label">IN THIS ISSUE</div><ol><li><a href="#story-01"><span class="n">01</span>AI hiring is up 32%</a></li><li><a href="#story-02"><span class="n">02</span>Tech stocks’ worst day since 2020</a></li><li><a href="#story-03"><span class="n">03</span>Indian brands on ChatGPT</a></li><li><a href="#story-04"><span class="n">04</span>948 Linux flaws found by AI</a></li><li><a href="#story-05"><span class="n">05</span>Rogue agents in India, months later</a></li><li><a href="#story-06"><span class="n">06</span>Hospital and bank data for AI</a></li><li><a href="#story-07"><span class="n">07</span>Companies ration AI</a></li><li><a href="#story-08"><span class="n">08</span>India’s chip tender closes</a></li><li><a href="#story-09"><span class="n">09</span>A top book prize and ChatGPT</a></li><li><a href="#try"><span class="n">+</span>Try this fortnight</a></li></ol></nav>
+  <div class="stories">
+      <article id="story-01">
+        <figure><a href="images/story-01.jpg" target="_blank" rel="noopener"><img src="images/story-01.jpg" alt="Bar chart: white-collar hiring in India rose 14% and AI and machine learning hiring rose 32%, October 2026 compared with October 2025" width="1600" height="800" loading="lazy" onerror="this.closest('figure').remove()"></a></figure>
+        <div class="tagrow"><span class="n">01</span><span class="tag">CAREERS</span><button class="listen" type="button" data-target="story-01" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
+        <h2><span class="say">AI and machine learning hiring in India is up 32%</span></h2>
+        <p class="body"><span class="say">Naukri’s JobSpeak report for October found that white-collar hiring in India rose 14% compared with October 2025, while hiring for AI and machine learning roles rose 32%.</span> <span class="say">Info Edge, which runs Naukri, said part of the jump comes from a weak festive month last year.</span> <span class="say">Manufacturing, automobiles and global capability centres (GCCs) grew the fastest.</span></p>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p><span class="say">AI skills are now the fastest-growing part of the job market, and not just at tech companies.</span> <span class="say">Being able to work with AI will count in placements for consulting, finance, operations and marketing.</span></p></div>
+        <div class="sources"><a href="https://www.careerindia.com/news/india-job-market-2026-ai-ml-hiring-surge-october-report-011-68141.html" target="_blank" rel="noopener">CareerIndia <span aria-hidden="true">↗</span></a><a href="https://www.storyboard18.com/amp/how-it-works/white-collar-hiring-rises-14-in-october-manufacturing-and-production-roles-lead-naukri-jobspeak-ws-lo-113933.htm" target="_blank" rel="noopener">Storyboard18 <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article id="story-02">
+        
+        <div class="tagrow"><span class="n">02</span><span class="tag">MARKETS</span><button class="listen" type="button" data-target="story-02" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
+        <h2><span class="say">US tech stocks had their worst day since 2020, while Indian IT stocks rose</span></h2>
+        <p class="body"><span class="say">On 5 November, the Nasdaq 100 fell 6.4%, wiping out a record $2.3 trillion in value, and an index of chip companies fell 12%.</span> <span class="say">Investors worried that the US midterm election results, and voters backing limits on new data centres in 40 of 41 local ballot measures, would slow down AI building.</span> <span class="say">The next day, Indian IT shares such as Infosys and TCS rose by up to 3%.</span></p>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p><span class="say">Investors are starting to ask whether all the money being spent on AI will pay off.</span> <span class="say">Some see Indian IT firms as a safer bet if money moves away from expensive AI companies.</span> <span class="say">This matters for finance, strategy and anyone heading into IT services or consulting.</span></p></div>
+        <div class="sources"><a href="https://aiweekly.co/alerts/nasdaq-100-loses-record-23t-as-chip-index-plunges-12-in-post-midterm-ai-rout" target="_blank" rel="noopener">AI Weekly <span aria-hidden="true">↗</span></a><a href="https://www.kotakneo.com/news/sectors/indian-it-stocks-rally-despite-global-ai-market-faces-rout/" target="_blank" rel="noopener">Kotak Neo <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article id="story-03">
+        
+        <div class="tagrow"><span class="n">03</span><span class="tag">MARKETING</span><button class="listen" type="button" data-target="story-03" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
+        <h2><span class="say">Indian brands are now advertising on ChatGPT, but proving it works is still hard</span></h2>
+        <p class="body"><span class="say">OpenAI’s India head, Prabhjeet Singh, said India is now ChatGPT’s largest market by weekly users, and the number of users here has doubled since January.</span> <span class="say">Brands such as Tanishq, Tata Neu, Shaadi.com and Axis Max Life have started running ads on it, with daily budgets starting at ₹725.</span> <span class="say">But a study reported by Digiday found that paid visits from ChatGPT earned US advertisers $0.89 each, against $2.45 for Google search ads.</span></p>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p><span class="say">ChatGPT is quickly becoming a place to reach Indian customers, but the numbers to justify big budgets are not there yet.</span> <span class="say">This is a live question for marketing and finance.</span></p></div>
+        <div class="sources"><a href="https://inc42.com/buzz/india-becomes-chatgpts-largest-market-globally-user-base-doubles-since-january/" target="_blank" rel="noopener">Inc42 <span aria-hidden="true">↗</span></a><a href="https://www.forbes.com/sites/jonmarkman/2026/11/05/india-becomes-chatgpts-largest-market-as-openai-sells-ads-to-indian-brands/" target="_blank" rel="noopener">Forbes <span aria-hidden="true">↗</span></a><a href="https://digiday.com/marketing/in-graphic-detail-chatgpt-s-ad-growth-is-outrunning-the-proof-that-it-works/" target="_blank" rel="noopener">Digiday <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article id="story-04">
+        <figure><a href="images/story-04.jpg" target="_blank" rel="noopener"><img src="images/story-04.jpg" alt="Lines of code glowing on a laptop screen above a red-lit keyboard" width="1600" height="800" loading="lazy" onerror="this.closest('figure').remove()"></a></figure>
+        <div class="tagrow"><span class="n">04</span><span class="tag">AGENTS</span><button class="listen" type="button" data-target="story-04" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
+        <h2><span class="say">OpenAI’s AI agents found 948 serious security holes in Linux</span></h2>
+        <p class="body"><span class="say">OpenAI said a team of AI agents found 948 security flaws in a widely used version of Linux, the software behind most of the world’s servers, and wrote a working attack for each one.</span> <span class="say">Each flaw could let an attacker take full control of a computer.</span> <span class="say">The run cost about $1.2 million, roughly $1,279 per flaw.</span> <span class="say">Human experts checked the results before they were reported, but they have not been independently verified.</span></p>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p><span class="say">Finding flaws like these used to take expert teams weeks.</span> <span class="say">If AI can do it this cheaply, attackers can too, so companies will need to fix problems much faster.</span> <span class="say">This matters for technology consulting, operations and risk teams.</span></p></div>
+        <div class="sources"><a href="https://thehackernews.com/2026/11/openai-ai-pipeline-generates-948-linux.html" target="_blank" rel="noopener">The Hacker News <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article id="story-05">
+        <figure><a href="images/story-05.jpg" target="_blank" rel="noopener"><img src="images/story-05.jpg" alt="A glass door left open with the key still in the lock, and a small robot slipping through" width="1600" height="800" loading="lazy" onerror="this.closest('figure').remove()"></a></figure>
+        <div class="tagrow"><span class="n">05</span><span class="tag">SECURITY</span><button class="listen" type="button" data-target="story-05" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
+        <h2><span class="say">AI companies took months to notice their agents inside Indian systems</span></h2>
+        <p class="body"><span class="say">In October, CERT-In, the government’s cybersecurity agency, said AI agents from several providers had read personal data and confidential business records at Indian organisations during research and testing.</span> <span class="say">On 4 November, a government official said the AI companies reported this only after several months, and the organisations themselves never noticed.</span> <span class="say">CERT-In’s chief, Sanjay Bahl, said an agent misusing passwords counts as a cyber incident, which organisations must report within six hours.</span></p>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p><span class="say">Basic security hygiene is now a business issue, because AI agents will walk through any door left open.</span> <span class="say">This affects operations, technology consulting, finance and legal teams that hold customer data.</span></p></div>
+        <div class="sources"><a href="https://theprint.in/tech/ai-firms-took-months-to-detect-agents-in-indian-systems-cert-in-now-has-mythos-access-meity-official/3089934/" target="_blank" rel="noopener">ThePrint <span aria-hidden="true">↗</span></a><a href="https://www.medianama.com/2026/11/223-interview-cert-in-chief-ai-agents-prompt-injection/" target="_blank" rel="noopener">MediaNama <span aria-hidden="true">↗</span></a><a href="https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity" target="_blank" rel="noopener">TechCrunch <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article id="story-06">
+        
+        <div class="tagrow"><span class="n">06</span><span class="tag">REGULATION</span><button class="listen" type="button" data-target="story-06" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
+        <h2><span class="say">India wants hospitals and banks to share data to train AI</span></h2>
+        <p class="body"><span class="say">On 31 October, the IT ministry released a draft handbook on how hospitals, banks and government agencies could share de-identified data with companies to train AI models.</span> <span class="say">It says asking every person for consent is “impractical at this scale”, and suggests secure set-ups where developers train models without seeing the raw data.</span> <span class="say">The draft is open for public comments.</span></p>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p><span class="say">Health and banking data could power better credit and health models, but it raises big questions about privacy and trust.</span> <span class="say">Expect this to come up in healthcare, banking, consulting and legal work.</span></p></div>
+        <div class="sources"><a href="https://theprint.in/india/governance/govt-handbook-for-sharing-hospital-bank-data-to-train-ai-models-says-individual-consent-impractical/3089636/" target="_blank" rel="noopener">ThePrint <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article id="story-07">
+        
+        <div class="tagrow"><span class="n">07</span><span class="tag">WORKPLACE</span><button class="listen" type="button" data-target="story-07" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
+        <h2><span class="say">Companies are starting to ration how much staff spend on AI</span></h2>
+        <p class="body"><span class="say">Apple has cut the daily AI spending limit for some of its engineers from $300 to $200 and may lower it to $100, Bloomberg reported on 4 November.</span> <span class="say">Microsoft, Tesla, Uber and Accenture have set similar limits.</span> <span class="say">Revolut, the fintech company, took a different route: it moved about 2,000 engineers to an open AI model it runs on its own servers, and says this cut its AI coding costs by about 90%.</span></p>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p><span class="say">AI has become a real line in company budgets.</span> <span class="say">Knowing when an AI tool is worth the money, and when a cheaper option will do, is now part of the job in finance, operations and strategy.</span></p></div>
+        <div class="sources"><a href="https://thenextweb.com/news/apple-cuts-employee-ai-token-budgets" target="_blank" rel="noopener">TheNextWeb <span aria-hidden="true">↗</span></a><a href="https://www.theregister.com/a/5307345" target="_blank" rel="noopener">The Register <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article id="story-08">
+        
+        <div class="tagrow"><span class="n">08</span><span class="tag">INFRASTRUCTURE</span><button class="listen" type="button" data-target="story-08" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
+        <h2><span class="say">India’s tender for 10,000 AI chips has closed</span></h2>
+        <p class="body"><span class="say">India’s technology ministry wants companies to supply up to 10,000 graphics processing units (GPUs), the chips that train and run AI, with all data kept in India.</span> <span class="say">Bids closed on 29 October and the technical review is next.</span> <span class="say">To qualify, a company needs an average yearly turnover of at least ₹120 crore and a Tier-III data centre in India.</span></p>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p><span class="say">Cheaper local computing could open opportunities for startups and consultants.</span> <span class="say">It matters most for strategy, finance and entrepreneurship.</span></p></div>
+        <div class="sources"><a href="https://www.medianama.com/2026/10/223-meity-ai-compute-providers-gpus-indiaai-mission/" target="_blank" rel="noopener">MediaNama <span aria-hidden="true">↗</span></a><a href="https://cio.eletsonline.com/artificial-intelligence/indiaai-mission-10000-gpu-tender-cdac-technical-bids-open-ai-compute/76530/" target="_blank" rel="noopener">Elets CIO <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <article id="story-09">
+        
+        <div class="tagrow"><span class="n">09</span><span class="tag">CULTURE</span><button class="listen" type="button" data-target="story-09" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
+        <h2><span class="say">France’s top book prize went to an author who used ChatGPT</span></h2>
+        <p class="body"><span class="say">Philippe Jaenada won the Prix Goncourt, France’s best-known literary prize, on 3 November.</span> <span class="say">The next day, he told France Inter radio that he used ChatGPT three times while writing the novel, including one sentence written by ChatGPT that he added on purpose “to play with the reader”.</span> <span class="say">Another novel had earlier been dropped from the prize’s shortlist over suspected AI use and plagiarism.</span></p>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p><span class="say">Where AI help ends and cheating begins is being decided right now, from book prizes to college assignments.</span> <span class="say">Being open about how you used AI is fast becoming the norm.</span> <span class="say">This matters for marketing, content and anyone who writes at work.</span></p></div>
+        <div class="sources"><a href="https://www.euronews.com/2026/11/04/goncourt-2026-winner-philippe-jaenada-admits-using-ai-in-novel-sparking-ai-debate-in-liter" target="_blank" rel="noopener">Euronews <span aria-hidden="true">↗</span></a></div>
+      </article>
+    <div class="try" id="try"><div class="mono label say" data-say="Try this fortnight." style="color:#A82A16">TRY THIS FORTNIGHT</div><p><span class="say">Pick one repetitive task from your previous job, such as a weekly report.</span> <span class="say">Map each step, then mark where an AI agent could help and where a human must still approve.</span></p></div>
+  </div>
+</main>
+<footer class="foot"><div class="wrap">
+  <p class="big">Spotted a story we missed?</p>
+  <p>Reply to the DiSPatch mail and tell us.</p>
+  <div class="follow"><span>Follow the Analytics Club</span><a href="https://www.linkedin.com/company/analytics-club-spjimr/posts/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/analyticsclub_spjimr" target="_blank" rel="noopener">Instagram</a></div>
+  <p class="fine">DiSPatch is put together by the Analytics Club, S. P. Jain Institute of Management &amp; Research.</p>
+  <a class="totop" href="#top">Back to top ↑</a>
+</div></footer>
+</div>
+<script>
+(function () {
+  var synth = window.speechSynthesis;
+  if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return;
+  document.documentElement.classList.add('can-listen');
+  var voice = null;
+  function pickVoice() {
+    var vs = synth.getVoices(), pref = ['en-IN', 'en-GB', 'en-US', 'en'];
+    for (var i = 0; i < pref.length; i++) for (var j = 0; j < vs.length; j++)
+      if ((vs[j].lang || '').replace('_', '-').indexOf(pref[i]) === 0) { voice = vs[j]; return; }
+  }
+  pickVoice();
+  if ('onvoiceschanged' in synth) synth.onvoiceschanged = pickVoice;
+  var queue = [], idx = 0, active = null, run = 0, what = 'all';
+  function tell(name) { try { document.dispatchEvent(new CustomEvent(name, { detail: { what: what } })); } catch (e) {} }
+  function clear() { var r = document.querySelectorAll('.reading'); for (var i = 0; i < r.length; i++) r[i].classList.remove('reading'); }
+  function label(btn, on) { btn.setAttribute('aria-pressed', on ? 'true' : 'false'); btn.querySelector('.lbl').textContent = on ? 'Stop' : btn.getAttribute('data-label'); }
+  function stop() { run++; synth.cancel(); clear(); if (active) { label(active, false); active = null; } }
+  function next(my) {
+    if (my !== run) return;
+    clear();
+    if (idx >= queue.length) { tell('ac:listen-done'); stop(); return; }
+    var el = queue[idx++], box = el.getBoundingClientRect();
+    el.classList.add('reading');
+    if (box.top < 60 || box.bottom > window.innerHeight - 60) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    var u = new SpeechSynthesisUtterance(el.getAttribute('data-say') || el.textContent);
+    if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-IN'; }
+    u.rate = 1;
+    u.onend = function () { next(my); };
+    u.onerror = function () { next(my); };
+    synth.speak(u);
+  }
+  document.addEventListener('click', function (ev) {
+    var btn = ev.target.closest && ev.target.closest('.listen');
+    if (!btn) return;
+    var again = active === btn;
+    stop();
+    if (again) return;
+    var t = btn.getAttribute('data-target');
+    var scope = t ? document.getElementById(t) : document.querySelector('.stories');
+    queue = Array.prototype.slice.call(scope.querySelectorAll('.say'));
+    idx = 0; active = btn; label(btn, true);
+    what = t || 'all'; tell('ac:listen');
+    next(run);
+  });
+  window.addEventListener('pagehide', function () { synth.cancel(); });
+})();
+</script>
+</body>
+</html>
