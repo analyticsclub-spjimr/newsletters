@@ -52,8 +52,9 @@ def load_issue(path):
     d = runpy.run_path(path)
     issue = dict(d['ISSUE'])
     issue['newsletter'] = d['NEWSLETTER']
-    issue['numbers'] = d['NUMBERS']
-    issue['stories'] = d['STORIES']
+    issue['numbers'] = d.get('NUMBERS', [])
+    issue['stories'] = d.get('STORIES', [])
+    issue['body'] = d.get('BODY', [])
     issue['slug'] = f'issue-{issue["number"]:02d}'
     issue['key'] = f'{issue["newsletter"]}-{issue["number"]:02d}'
     issue['folder'] = f'{issue["newsletter"]}/{issue["slug"]}'
@@ -330,10 +331,105 @@ def share_tags(issue):
             f'\n<meta name="twitter:card" content="summary_large_image">')
 
 
+def retheme(text, n):
+    """Swap the warm DiSPatch colours for a newsletter's own palette (set in config.py)."""
+    for old, new in n.get('theme', {}).items():
+        text = text.replace(old, new)
+    return text
+
+
+ARTICLE_CSS = """
+.kicker{display:inline-block;margin-top:30px;background:#FCEDEA;color:%INK_RED%;border-radius:999px;padding:5px 12px;font-family:%MONO%;font-size:12px;letter-spacing:1px}
+.kicker + h1{margin-top:14px}
+.art{padding:14px 32px 10px}
+.art .ap{margin:20px 0 0;font-size:18px;line-height:1.7;color:%BODY%}
+.art h2{margin:40px 0 0;font-size:clamp(22px,4.8vw,26px);line-height:1.28;letter-spacing:-.01em}
+.pull{margin:30px 0 4px;padding:6px 0 6px 22px;border-left:4px solid %ACCENT%}
+.pull p{margin:0;font-family:%SERIF%;font-size:clamp(21px,4.6vw,25px);line-height:1.45;font-style:italic;color:%INK%}
+.pull cite{display:block;margin-top:10px;font-style:normal;font-size:14px;color:%MUTED%}
+.points{margin:24px 0 0}
+.point{display:flex;gap:16px;padding:20px 0;border-top:1px solid #EEECE7}
+.point:last-child{border-bottom:1px solid #EEECE7}
+.pn{flex:none;width:40px;height:40px;border-radius:50%;background:#FCEDEA;color:%INK_RED%;display:flex;align-items:center;justify-content:center;font-family:%MONO%;font-size:14px}
+.point h3{margin:6px 0 0;font-size:19px;line-height:1.35}
+.point p{margin:8px 0 0;font-size:17px;line-height:1.65;color:%BODY%}
+.art figure{margin:30px 0 6px}
+.art figcaption{margin-top:10px;font-size:14px;line-height:1.5;color:%MUTED%}
+.art .end{margin:30px 0 26px;padding:20px 22px;background:#FCEDEA;border-radius:14px;font-size:19px;line-height:1.55;font-weight:600;color:%INK%}
+@media (max-width:640px){
+  .art{padding:6px 18px 6px}
+  .art .ap{font-size:18px}
+  .point{gap:12px}
+  .pn{width:34px;height:34px;font-size:13px}
+  .point p{font-size:18px}
+  .art figcaption{font-size:15px}
+}
+"""
+
+
+def article_body(issue, A, canvas=False):
+    """Layout for a single long article (PerSPective)."""
+    n = newsletter(issue['newsletter'])
+    src = lambda p: A['map'].get(p, p)  # noqa: E731
+    ext = '' if canvas else ' target="_blank" rel="noopener"'
+    out, points = [], []
+
+    def flush():
+        if points:
+            out.append('<div class="points">' + ''.join(points) + '</div>')
+            points.clear()
+    for b in issue['body']:
+        kind = b[0]
+        if kind != 'point':
+            flush()
+        if kind == 'p':
+            out.append(f'<p class="ap">{says(b[1])}</p>')
+        elif kind == 'h2':
+            out.append(f'<h2><span class="say">{e(b[1])}</span></h2>')
+        elif kind == 'quote':
+            out.append(f'<blockquote class="pull"><p>{says(b[1])}</p><cite>{e(b[2])}</cite></blockquote>')
+        elif kind == 'point':
+            points.append(f'<div class="point"><span class="pn">{e(b[1])}</span><div><h3><span class="say">{e(b[2])}</span></h3><p>{says(b[3])}</p></div></div>')
+        elif kind == 'fig':
+            onerr = '' if canvas else ' onerror="this.closest(\'figure\').remove()"'
+            cap = f'<figcaption>{e(b[3])}</figcaption>' if len(b) > 3 and b[3] else ''
+            out.append(f'<figure><img src="{src(b[1])}" alt="{a(b[2])}" width="1600" height="800" loading="lazy"{onerr}>{cap}</figure>')
+        elif kind == 'end':
+            out.append(f'<p class="end">{says(b[1])}</p>')
+    flush()
+    stamp = f'<span class="stamp">{"<br>".join(e(x) for x in issue["stamp"])}</span>' if issue.get('stamp') else ''
+    root_cls = 'pg can-listen' if canvas else 'pg'
+    return f'''<div class="{root_cls}" id="top">
+{topbar(A, canvas)}
+<main class="wrap">
+  <div class="mast">
+    <div><span class="wordmark">{wordmark(n)}</span><span class="tagline">{e(n["tagline"])}</span></div>
+    {stamp}
+  </div>
+  <div class="dateline"><span>Vol. {issue.get("volume", 1)} · No. {issue["number"]}</span><span>{e(issue["date_label"])}</span></div>
+  <span class="kicker">{e(issue["kicker"])}</span>
+  <h1>{e(issue["title"])}</h1>
+  <p class="meta">{e(issue["page_meta"])}</p>
+  <button class="listen listen-all" type="button" data-label="Listen to this article" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen to this article</span></button>
+  <div class="cover"><span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span><img src="{src(issue["cover"])}" alt="{a(issue["cover_alt"])}" width="1200" height="800"></div>
+  <div class="stories art">
+    {"".join(out)}
+  </div>
+</main>
+<footer class="foot"><div class="wrap">
+  <p class="big">{e(issue.get("reply_big", "Spotted a story we missed?"))}</p>
+  <p>{e(issue.get("reply_small", "Reply to the " + n["name"] + " mail and tell us."))}</p>
+  {follow(ext)}
+  <p class="fine">{e(n["name"])} is put together by the {e(C.CLUB)}, {e(C.SCHOOL_FULL)}.</p>
+  <a class="totop" href="#top">Back to top ↑</a>
+</div></footer>
+</div>'''
+
+
 def page_html(issue):
     n = newsletter(issue['newsletter'])
     A = site_assets(issue)
-    return f'''<!doctype html>
+    return retheme(f'''<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -348,15 +444,15 @@ def page_html(issue):
 <link rel="apple-touch-icon" href="{A["logo"]}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 {FONT_LINK}
-<style>{page_css(n["accent"])}</style>
+<style>{page_css(n["accent"])}{fill(ARTICLE_CSS, INK_RED=INK_RED, MONO=MONO, ACCENT=n["accent"], SERIF=SERIF, INK=INK, MUTED=MUTED, BODY=BODY) if issue['body'] else ''}</style>
 <script src="{A["analytics"]}" defer></script>
 </head>
 <body>
-{page_body(issue, A)}
+{article_body(issue, A) if issue['body'] else page_body(issue, A)}
 <script>{LISTEN_JS}</script>
 </body>
 </html>
-'''
+''', n)
 
 
 # ------------------------------------------------------------------ email
@@ -393,6 +489,13 @@ def email_inner(issue, A):
     pill = ('display:inline-block;font-family:Arial,sans-serif;font-size:15px;line-height:18px;font-weight:bold;color:#FFFFFF;'
             'text-decoration:none;border:1px solid #3A3D45;border-radius:999px;padding:10px 18px;')
     intro = launch_intro(issue) if issue.get('launch_intro') else ''
+    if issue.get('intro_text'):
+        intro = (f'\n<tr><td class="px" style="padding:24px 24px 0 24px;">\n  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FDF5F2" style="background-color:#FDF5F2;border:1px solid #F2DDD6;border-radius:14px;">\n'
+                 f'  <tr><td style="padding:18px 20px;">\n    <p style="margin:0;font-family:{SANS};font-size:18px;line-height:25px;font-weight:bold;color:{INK};">Hi everyone,</p>\n'
+                 f'    <p style="margin:8px 0 0 0;font-family:{SANS};font-size:17px;line-height:26px;color:{BODY};">{e(issue["intro_text"])}</p>\n  </td></tr></table>\n</td></tr>\n')
+    byline = (f'\n  <p style="margin:12px 0 0 0;font-family:{SANS};font-size:15px;line-height:22px;color:{MUTED};">{e(issue["email_byline"])}</p>'
+              if issue.get('email_byline') else '')
+    button = e(issue.get('button', 'Read the full issue'))
     cover_bg = issue.get('cover_bg', '#F3E6E1')
     return f'''<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F7ECE8" style="background-color:#F7ECE8;">
 <tr><td class="outer" align="center" style="padding:20px 10px;">
@@ -429,19 +532,19 @@ def email_inner(issue, A):
 <tr><td class="px" style="padding:24px 24px 0 24px;">
   <p style="margin:0 0 10px 0;font-family:{SANS};font-size:15px;line-height:22px;color:{MUTED};">{e(issue["email_kicker"])}</p>
   <h2 class="hl" style="margin:0;font-family:{SANS};font-size:28px;line-height:34px;font-weight:bold;color:{INK};letter-spacing:-0.5px;">{e(issue["email_headline"])}</h2>
-  <p style="margin:12px 0 0 0;font-family:{SANS};font-size:17px;line-height:27px;color:{BODY};">{e(issue["email_teaser"])}</p>
+  <p style="margin:12px 0 0 0;font-family:{SANS};font-size:17px;line-height:27px;color:{BODY};">{e(issue["email_teaser"])}</p>{byline}
 </td></tr>
 
 <tr><td class="px btn" style="padding:24px 24px 0 24px;">
-  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{page_url}" style="height:50px;v-text-anchor:middle;width:250px;" arcsize="50%" stroke="f" fillcolor="{accent}"><center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:17px;font-weight:bold;">Read the full issue &rarr;</center></v:roundrect><![endif]-->
-  <!--[if !mso]><!--><a href="{page_url}" style="display:inline-block;background-color:{accent};color:#FFFFFF;font-family:{SANS};font-size:17px;line-height:20px;font-weight:bold;text-decoration:none;padding:15px 26px;border-radius:999px;">Read the full issue &rarr;</a><!--<![endif]-->
+  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{page_url}" style="height:50px;v-text-anchor:middle;width:250px;" arcsize="50%" stroke="f" fillcolor="{accent}"><center style="color:#FFFFFF;font-family:Arial,sans-serif;font-size:17px;font-weight:bold;">{button} &rarr;</center></v:roundrect><![endif]-->
+  <!--[if !mso]><!--><a href="{page_url}" style="display:inline-block;background-color:{accent};color:#FFFFFF;font-family:{SANS};font-size:17px;line-height:20px;font-weight:bold;text-decoration:none;padding:15px 26px;border-radius:999px;">{button} &rarr;</a><!--<![endif]-->
 </td></tr>
 
 <tr><td class="px" style="padding:30px 24px 0 24px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{INK}" style="background-color:{INK};border-radius:16px;">
   <tr><td style="padding:22px 22px;">
-    <p style="margin:0;font-family:{SANS};font-size:18px;line-height:25px;font-weight:bold;color:#FFFFFF;">Spotted a story we missed?</p>
-    <p style="margin:6px 0 0 0;font-family:{SANS};font-size:16px;line-height:24px;color:#C9CCD3;">Reply to this mail and tell us.</p>
+    <p style="margin:0;font-family:{SANS};font-size:18px;line-height:25px;font-weight:bold;color:#FFFFFF;">{e(issue.get("reply_big", "Spotted a story we missed?"))}</p>
+    <p style="margin:6px 0 0 0;font-family:{SANS};font-size:16px;line-height:24px;color:#C9CCD3;">{e(issue.get("email_reply_small", "Reply to this mail and tell us."))}</p>
     <p style="margin:16px 0 0 0;padding-top:14px;border-top:1px solid #2A2D35;font-family:{SANS};font-size:15px;line-height:20px;color:#A3A7B0;">Follow the {e(C.CLUB)}</p>
     <p style="margin:10px 0 0 0;line-height:46px;"><a href="{C.LINKEDIN}" style="{pill}">LinkedIn</a>&nbsp;&nbsp;<a href="{C.INSTAGRAM}" style="{pill}">Instagram</a></p>
   </td></tr></table>
@@ -475,7 +578,7 @@ def email_html(issue):
     inner = inner.replace('<tr><td class="outer" align="center" style="padding:20px 10px;">\n',
                           '<tr><td class="outer" align="center" style="padding:20px 10px;">\n<!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->\n', 1)
     inner = inner.replace('</table>\n</td></tr></table>', '</table>\n<!--[if mso]></td></tr></table><![endif]-->\n</td></tr></table>', 1)
-    return f'''<!doctype html>
+    return retheme(f'''<!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
 <meta charset="utf-8">
@@ -494,7 +597,7 @@ def email_html(issue):
 {inner}
 </body>
 </html>
-'''
+''', n)
 
 
 # ------------------------------------------------------------------ front page
@@ -583,8 +686,8 @@ def main(args):
     if missing:
         raise SystemExit('No issue file for: ' + ', '.join(sorted(missing)) + '. Expected _build/issues/<name>.py, e.g. dispatch-02.py')
     for i in wanted:
-        if i['newsletter'] != 'dispatch':
-            raise SystemExit(f'{i["key"]}: only the DiSPatch design is built so far.')
+        if i['newsletter'] == 'grasp':
+            raise SystemExit(f'{i["key"]}: the GraSP design is not built yet.')
         cover = os.path.join(ROOT, i['folder'], i['cover'])
         if not os.path.exists(cover):
             print(f'  note: {i["folder"]}/{i["cover"]} is missing. Add the picture before publishing.')

@@ -22,7 +22,11 @@ NEWSLETTERS = [
     {'id': 'perspective', 'name': 'PerSPective', 'parts': ('Per', 'SP', 'ective'), 'accent': '#2149C9',
      'tagline': 'AI through the lens of every field.',
      'about': 'How AI is mixing with different fields, like marketing, finance, operations and more.',
-     'status': 'soon'},
+     'status': 'live',
+     # PerSPective uses a cool blue palette instead of DiSPatch's warm one: {old colour: new colour}
+     'theme': {'#F7ECE8': '#EDF1F8', '#ECE4DF': '#DCE3EF', '#E8DCD5': '#D6DEEC', '#A82A16': '#1A3AA8',
+               '#FCEDEA': '#E6ECFA', '#FF8A70': '#8FB0FF', '#FDF5F2': '#F1F5FC', '#F2DDD6': '#D9E2F2',
+               '#F4C7BE': '#B9C9F2'}},
     {'id': 'grasp', 'name': 'GraSP', 'parts': ('Gra', 'SP', ''), 'accent': '#B98100',
      'tagline': 'One AI concept at a time.',
      'about': 'One AI concept at a time, taught simply.',

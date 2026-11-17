@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PerSPective · Issue 1 · Analytics Club, SPJIMR</title>
+<meta name="description" content="Half your ad money is wasted. AI now knows which half.. PerSPective from the Analytics Club, SPJIMR.">
+<meta property="og:title" content="PerSPective · Issue 1">
+<meta property="og:description" content="Half your ad money is wasted. AI now knows which half..">
+<meta property="og:url" content="https://analyticsclub-spjimr.github.io/newsletters/perspective/issue-01/">
+<meta property="og:image" content="https://analyticsclub-spjimr.github.io/newsletters/perspective/issue-01/images/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#EDF1F8">
+<meta name="color-scheme" content="light">
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="apple-touch-icon" href="../../assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#EDF1F8}
+.pg{background:#EDF1F8;color:#14161B;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.5}
+.pg a{color:#1A3AA8}
+.pg img{display:block;max-width:100%;height:auto}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.top{background:#fff;border-bottom:1px solid #DCE3EF}
+.top .wrap{max-width:1120px;display:flex;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px}
+.logo{position:relative;flex:none;display:inline-block;width:44px;height:44px;border-radius:10px;background:#EFE8F6;overflow:hidden}
+.logo .ph{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font:700 14px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.3px;color:#522381}
+.pg .logo img{position:relative;width:44px;height:44px;border-radius:10px}
+.club b{display:block;font-size:16px;line-height:1.2}
+.club span{display:block;font-size:12px;letter-spacing:2px;color:#6B6F78}
+.mast{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:34px}
+.wordmark{display:block;font-family:'Exo 2','Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:40px;line-height:1.05;letter-spacing:-.5px}
+.wordmark span{color:#2149C9}
+.tagline{display:block;margin-top:6px;font-size:16px;color:#6B6F78}
+.stamp{flex:none;display:inline-block;transform:rotate(-7deg);border:3px double #2149C9;border-radius:4px;padding:7px 12px;color:#2149C9;font-family:'Courier New',Courier,monospace;font-size:14px;font-weight:700;letter-spacing:3px;line-height:1.1;text-align:center}
+.dateline{display:flex;justify-content:space-between;gap:12px;margin-top:20px;padding:7px 0;border-top:1px solid #14161B;border-bottom:3px double #14161B;font-family:Georgia,'Times New Roman',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#14161B}
+h1{margin:30px 0 0;font-size:clamp(28px,6.4vw,46px);line-height:1.12;letter-spacing:-.025em}
+.meta{margin:12px 0 0;font-size:15px;color:#6B6F78}
+.cover{position:relative;margin-top:34px;color:#2149C9}
+.cover img{width:100%;border-radius:14px}
+.c{position:absolute;width:16px;height:16px;border:0 solid currentColor}
+.c.tl{top:-8px;left:-8px;border-top-width:2px;border-left-width:2px}
+.c.tr{top:-8px;right:-8px;border-top-width:2px;border-right-width:2px}
+.c.bl{bottom:-8px;left:-8px;border-bottom-width:2px;border-left-width:2px}
+.c.br{bottom:-8px;right:-8px;border-bottom-width:2px;border-right-width:2px}
+.mono{font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;letter-spacing:1px}
+.label{font-size:12px;color:#6B6F78}
+.numbers{margin-top:34px;background:#fff;border:1px solid #DCE3EF;border-radius:16px;padding:20px 22px}
+.numgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:14px}
+.num b{display:block;font-size:30px;line-height:1.1;letter-spacing:-.5px;color:#2149C9}
+.num span{display:block;margin-top:4px;font-size:14px;line-height:1.4;color:#4A4E57}
+.toc{margin-top:32px}
+.toc ol{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+.toc a{display:flex;align-items:center;gap:12px;min-height:48px;padding:10px 0;border-top:1px solid #D6DEEC;color:#14161B;text-decoration:none;font-size:16px;font-weight:600}
+.n{font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;font-size:13px;font-weight:400;color:#1A3AA8}
+.stories{margin-top:28px;background:#fff;border:1px solid #DCE3EF;border-radius:20px;padding:4px 28px}
+article{padding:30px 0;border-bottom:1px solid #EEECE7;scroll-margin-top:12px}
+figure{margin:0 0 18px}
+figure img{width:100%;border-radius:12px}
+.tagrow{display:flex;align-items:center;gap:10px}
+.tagrow .n{color:#6B6F78}
+.tag{background:#E6ECFA;color:#1A3AA8;border-radius:999px;padding:4px 10px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;font-size:11px;letter-spacing:.8px}
+article h2{margin:12px 0 0;font-size:clamp(22px,4.8vw,25px);line-height:1.28;letter-spacing:-.01em}
+.body{margin:12px 0 0;font-size:17px;line-height:1.65;color:#3B3F48}
+.why{margin-top:16px;background:#FAF8F6;border:1px solid #F0E9E5;border-radius:12px;padding:16px 18px}
+.why h3{display:flex;align-items:center;gap:6px;margin:0;font-size:14px;color:#1A3AA8}
+.dot{flex:none;width:6px;height:6px;border-radius:50%;background:#2149C9}
+.why p{margin:6px 0 0;font-size:16.5px;line-height:1.6}
+.sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.sources a{display:inline-flex;align-items:center;gap:4px;min-height:42px;padding:8px 14px;border:1px solid #E4E1DB;border-radius:999px;color:#4A4E57;font-size:14px;text-decoration:none}
+.try{margin:28px 0;background:#E6ECFA;border-radius:16px;padding:22px 24px}
+.try p{margin:8px 0 0;font-size:17px;line-height:1.6}
+.foot{margin-top:44px;background:#14161B;color:#fff}
+.foot .wrap{padding-top:36px;padding-bottom:40px}
+.foot .big{margin:0;font-size:20px;line-height:1.35;font-weight:700}
+.foot p{margin:8px 0 0;font-size:16px;line-height:1.55;color:#C9CCD3}
+.follow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;font-size:15px;color:#A3A7B0}
+.follow span{flex-basis:100%}
+.follow a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #3A3D45;border-radius:999px;color:#fff;font-weight:600;text-decoration:none}
+.fine{margin-top:22px!important;padding-top:16px;border-top:1px solid #2A2D35;font-size:13px!important;color:#A3A7B0!important}
+.listen{display:none;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:1.5px solid #2149C9;border-radius:999px;background:#fff;color:#1A3AA8;font:600 14px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer}
+.can-listen .listen{display:inline-flex}
+.listen .ico::before{content:"▶";font-size:11px}
+.listen[aria-pressed="true"]{background:#2149C9;color:#fff}
+.listen[aria-pressed="true"] .ico::before{content:"■";font-size:12px}
+.listen-all{margin-top:16px;min-height:46px;padding:0 18px;font-size:15px}
+.tagrow .listen{margin-left:auto}
+.reading{background:#FFE9A8;border-radius:3px;box-shadow:0 0 0 3px #FFE9A8}
+.totop{display:inline-block;margin-top:14px;font-size:15px;font-weight:600;color:#8FB0FF;text-decoration:none}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .mast{padding-top:26px}
+  .wordmark{font-size:36px}
+  .tagline{font-size:16px}
+  .stamp{font-size:12px;letter-spacing:2px;padding:6px 9px}
+  .dateline{font-size:12px;letter-spacing:1.5px}
+  h1{font-size:30px}
+  .meta{font-size:16px}
+  .cover{margin-top:28px}
+  .label{font-size:12px}
+  .numbers{padding:18px}
+  .numgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 14px}
+  .num b{font-size:28px}
+  .num span{font-size:15px}
+  .toc ol{grid-template-columns:1fr}
+  .toc a{font-size:17px}
+  .stories{padding:2px 18px;border-radius:16px}
+  article{padding:26px 0}
+  .tag{font-size:12px}
+  article h2{font-size:23px}
+  .body{font-size:18px}
+  .why h3{font-size:15px}
+  .why p{font-size:17px}
+  .sources a{font-size:15px}
+  .try{padding:20px}
+  .try p{font-size:18px}
+  .foot p{font-size:17px}
+  .listen{font-size:15px;min-height:44px}
+}
+
+.kicker{display:inline-block;margin-top:30px;background:#E6ECFA;color:#1A3AA8;border-radius:999px;padding:5px 12px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;font-size:12px;letter-spacing:1px}
+.kicker + h1{margin-top:14px}
+.art{padding:14px 32px 10px}
+.art .ap{margin:20px 0 0;font-size:18px;line-height:1.7;color:#3B3F48}
+.art h2{margin:40px 0 0;font-size:clamp(22px,4.8vw,26px);line-height:1.28;letter-spacing:-.01em}
+.pull{margin:30px 0 4px;padding:6px 0 6px 22px;border-left:4px solid #2149C9}
+.pull p{margin:0;font-family:Georgia,'Times New Roman',serif;font-size:clamp(21px,4.6vw,25px);line-height:1.45;font-style:italic;color:#14161B}
+.pull cite{display:block;margin-top:10px;font-style:normal;font-size:14px;color:#6B6F78}
+.points{margin:24px 0 0}
+.point{display:flex;gap:16px;padding:20px 0;border-top:1px solid #EEECE7}
+.point:last-child{border-bottom:1px solid #EEECE7}
+.pn{flex:none;width:40px;height:40px;border-radius:50%;background:#E6ECFA;color:#1A3AA8;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,'SF Mono',Menlo,Consolas,'Courier New',monospace;font-size:14px}
+.point h3{margin:6px 0 0;font-size:19px;line-height:1.35}
+.point p{margin:8px 0 0;font-size:17px;line-height:1.65;color:#3B3F48}
+.art figure{margin:30px 0 6px}
+.art figcaption{margin-top:10px;font-size:14px;line-height:1.5;color:#6B6F78}
+.art .end{margin:30px 0 26px;padding:20px 22px;background:#E6ECFA;border-radius:14px;font-size:19px;line-height:1.55;font-weight:600;color:#14161B}
+@media (max-width:640px){
+  .art{padding:6px 18px 6px}
+  .art .ap{font-size:18px}
+  .point{gap:12px}
+  .pn{width:34px;height:34px;font-size:13px}
+  .point p{font-size:18px}
+  .art figcaption{font-size:15px}
+}
+</style>
+<script src="../../assets/analytics.js" defer></script>
+</head>
+<body>
+<div class="pg" id="top">
+<header class="top"><div class="wrap"><span class="logo"><span class="ph" aria-hidden="true">AIC</span><img src="../../assets/logo-mark.png" alt="Analytics Club logo" width="44" height="44" onerror="this.remove()"></span><div class="club"><b>Analytics Club</b><span>SPJIMR</span></div></div></header>
+<main class="wrap">
+  <div class="mast">
+    <div><span class="wordmark">Per<span style="color:#2149C9">SP</span>ective</span><span class="tagline">AI through the lens of every field.</span></div>
+    <span class="stamp">FIRST<br>ISSUE</span>
+  </div>
+  <div class="dateline"><span>Vol. 1 · No. 1</span><span>Sunday 22 November 2026</span></div>
+  <span class="kicker">AI × MARKETING</span>
+  <h1>Half your ad money is wasted. AI now knows which half.</h1>
+  <p class="meta">A four-minute read by Srihari.</p>
+  <button class="listen listen-all" type="button" data-label="Listen to this article" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen to this article</span></button>
+  <div class="cover"><span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span><img src="images/cover.jpg" alt="A person drawn in glowing blue lines looks through a magnifying lens; inside it, a shopping street turns into ad cards, charts and a customer path" width="1200" height="800"></div>
+  <div class="stories art">
+    <p class="ap"><span class="say">Picture this, you wake up one morning, stretch and reach for your phone and open the first news article you see.</span> <span class="say">It is about the same old AI in the workplace feed and it tells you for the umpteenth time on how AI is taking over the workplace again, which is causing layoffs.</span> <span class="say">Not this again you groan and scroll up and see an ad for a toothpaste.</span> <span class="say">Hmmm, suspicious you think at this time of the day and immediately after you wake up.</span> <span class="say">But this is the least what AI can do in digital marketing nowadays.</span></p><p class="ap"><span class="say">No matter how varied the opinion is on AI these days, with some people swearing by it, that it makes their lives easier, while others seem to have enough of it and see it as a massive word prediction software, (myself being in the latter), there is no doubt about the advancements it has achieved in everyday life and industry, one such space being digital marketing.</span></p><blockquote class="pull"><p><span class="say">“Half the money I spend on advertising is wasted; the trouble is I don’t know which half.”</span></p><cite>Attributed to John Wanamaker, the 19th-century retail titan</cite></blockquote><p class="ap"><span class="say">If John were alive today and walking through the quad after a brutal Marketing Management case prep, an ensemble gradient-boosted model would tap him on the shoulder, hand him a dashboard, and say: “Actually, John, it was precisely 48.7% of ad set B on Tuesday at 2:14 AM.</span> <span class="say">Also, your creative fatigued three days ago.”</span></p><figure><img src="images/wasted-half.jpg" alt="A glowing pie chart split in two: one half sends ad cards to a person, the other half breaks apart, with a magnifying lens on the line between them" width="1600" height="800" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>The wasted half, finally visible.</figcaption></figure><p class="ap"><span class="say">Welcome to modern digital marketing, where gut feelings and apparent natural creativity are trumped by neural networks, and the intersection with AI looks less like a neat Venn diagram and more like a high-speed collision inside a Snowflake warehouse.</span></p><p class="ap"><span class="say">Enter machine learning.</span> <span class="say">The goal is no longer just tracking where a user went yesterday; it is predicting where their intent will land tomorrow.</span> <span class="say">Marketing analytics has shifted from descriptive post-mortems (“Why did nobody buy our farm fresh milk?”) to prescriptive dynamic interventions:</span></p><div class="points"><div class="point"><span class="pn">01</span><div><h3><span class="say">Multi-touch attribution without the hallucinations</span></h3><p><span class="say">Traditional last-touch attribution gave 100% of the credit to the final search ad, ignoring the podcast mention, the YouTube pre-roll, and the three weeks of subconscious brand conditioning.</span> <span class="say">Bayesian attribution models and Shapley-value formulations now weigh the true incremental lift of every channel touchpoint before marketing budgets are incinerated.</span></p></div></div></div><figure><img src="images/attribution.jpg" alt="A customer path through a podcast, a video ad, a phone and a search bar to a shopping bag, with a bar under each step showing its share of the credit" width="1600" height="800" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>Every step of the journey gets its fair share of the credit, not just the last click.</figcaption></figure><div class="points"><div class="point"><span class="pn">02</span><div><h3><span class="say">Hyper-personalization at scale</span></h3><p><span class="say">We’ve graduated from “Hello {First_Name}” email marketing.</span> <span class="say">GenAI and reinforcement learning loops now tailor value propositions on the fly.</span> <span class="say">A price-sensitive student studying near Andheri gets ad copy highlighting bundle discounts and immediate delivery, while an impulse buyer gets scarcity framing, rendered in real-time by dynamic creative optimization (DCO) engines.</span></p></div></div><div class="point"><span class="pn">03</span><div><h3><span class="say">Synthetic personas and pre-testing</span></h3><p><span class="say">Why blow millions on a nationwide focus group when you can prompt fine-tuned agentic clusters that simulate your demographic cohorts?</span> <span class="say">Marketers are running synthetic testing rounds on copy, sentiment, and visual assets before spending their first media dollar.</span></p></div></div></div><figure><img src="images/black-box.jpg" alt="A glowing black box spits out loud, chaotic ad cards on one side, while a human hand on a slider turns its output into calm, orderly cards on the other" width="1600" height="800" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>An algorithm optimises for exactly what you ask. The guardrails are your job.</figcaption></figure><h2><span class="say">The “black box” dilemma (or, when the AI goes rogue)</span></h2><p class="ap"><span class="say">Of course, letting neural networks run your brand voice is a bit like handing a flamethrower to an over-enthusiastic MBA intern who is over caffeinated and simultaneously hungry to prove themselves.</span></p><p class="ap"><span class="say">Algorithms optimize strictly for the loss function you hand them.</span> <span class="say">If you tell an engine to maximize clicks without guardrails, it will gladly write clickbait so sensational that your premium B2B SaaS platform begins to look like a tabloid exposé on the Bollywood party culture.</span> <span class="say">Furthermore, algorithmic bias and data drift mean that what drove conversions during Diwali might crash your ROAS completely by February.</span></p><p class="ap"><span class="say">Marketing effectiveness requires equal parts Python script and behavioral economics.</span> <span class="say">The data tells you what happened down to the millisecond; human intuition and brand strategy tell you why a customer cared enough to click.</span></p><h2><span class="say">What it means for the next generation of managers</span></h2><p class="ap"><span class="say">If you think marketing in the AI era means sitting back while prompt generators run your agency on autopilot, you’re looking at the wrong half of the dashboard.</span> <span class="say">The brands winning today aren’t the ones spamming automated content; they’re the ones building closed-loop data pipelines, understanding customer lifetime value (LTV) anomalies, and treating every campaign like a live statistical hypothesis.</span></p><p class="end"><span class="say">The algorithm has solved the targeting puzzle.</span> <span class="say">The next challenge is making sure the message is actually worth reading.</span></p>
+  </div>
+</main>
+<footer class="foot"><div class="wrap">
+  <p class="big">Which field should PerSPective look at next?</p>
+  <p>Reply to the PerSPective mail and tell us.</p>
+  <div class="follow"><span>Follow the Analytics Club</span><a href="https://www.linkedin.com/company/analytics-club-spjimr/posts/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/analyticsclub_spjimr" target="_blank" rel="noopener">Instagram</a></div>
+  <p class="fine">PerSPective is put together by the Analytics Club, S. P. Jain Institute of Management &amp; Research.</p>
+  <a class="totop" href="#top">Back to top ↑</a>
+</div></footer>
+</div>
+<script>
+(function () {
+  var synth = window.speechSynthesis;
+  if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return;
+  document.documentElement.classList.add('can-listen');
+  var voice = null;
+  function pickVoice() {
+    var vs = synth.getVoices(), pref = ['en-IN', 'en-GB', 'en-US', 'en'];
+    for (var i = 0; i < pref.length; i++) for (var j = 0; j < vs.length; j++)
+      if ((vs[j].lang || '').replace('_', '-').indexOf(pref[i]) === 0) { voice = vs[j]; return; }
+  }
+  pickVoice();
+  if ('onvoiceschanged' in synth) synth.onvoiceschanged = pickVoice;
+  var queue = [], idx = 0, active = null, run = 0, what = 'all';
+  function tell(name) { try { document.dispatchEvent(new CustomEvent(name, { detail: { what: what } })); } catch (e) {} }
+  function clear() { var r = document.querySelectorAll('.reading'); for (var i = 0; i < r.length; i++) r[i].classList.remove('reading'); }
+  function label(btn, on) { btn.setAttribute('aria-pressed', on ? 'true' : 'false'); btn.querySelector('.lbl').textContent = on ? 'Stop' : btn.getAttribute('data-label'); }
+  function stop() { run++; synth.cancel(); clear(); if (active) { label(active, false); active = null; } }
+  function next(my) {
+    if (my !== run) return;
+    clear();
+    if (idx >= queue.length) { tell('ac:listen-done'); stop(); return; }
+    var el = queue[idx++], box = el.getBoundingClientRect();
+    el.classList.add('reading');
+    if (box.top < 60 || box.bottom > window.innerHeight - 60) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    var u = new SpeechSynthesisUtterance(el.getAttribute('data-say') || el.textContent);
+    if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-IN'; }
+    u.rate = 1;
+    u.onend = function () { next(my); };
+    u.onerror = function () { next(my); };
+    synth.speak(u);
+  }
+  document.addEventListener('click', function (ev) {
+    var btn = ev.target.closest && ev.target.closest('.listen');
+    if (!btn) return;
+    var again = active === btn;
+    stop();
+    if (again) return;
+    var t = btn.getAttribute('data-target');
+    var scope = t ? document.getElementById(t) : document.querySelector('.stories');
+    queue = Array.prototype.slice.call(scope.querySelectorAll('.say'));
+    idx = 0; active = btn; label(btn, true);
+    what = t || 'all'; tell('ac:listen');
+    next(run);
+  });
+  window.addEventListener('pagehide', function () { synth.cancel(); });
+})();
+</script>
+</body>
+</html>

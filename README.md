@@ -86,5 +86,6 @@ Ad blockers stop some counting, so the real numbers are a little higher than the
 ## Good to know
 
 - Each issue has its own `images` folder, so a new cover never clashes with an old one and browsers never show a stale picture.
-- Only the DiSPatch design is in the build tool for now. PerSPective and GraSP will be added before they launch, and their folders will sit next to `dispatch/`.
+- DiSPatch uses the stories layout (`STORIES` in its issue file). PerSPective uses the single-article layout (`BODY` in its issue file, see `_build/issues/perspective-01.py`) and a blue colour theme set in `config.py`. GraSP's design will be added before it launches.
+- To build one issue without touching the others, name it, e.g. `python3 _build/build.py perspective-02`. Avoid rebuilding DiSPatch issue 1 without a reason: its launch email lists the other newsletters as they were on launch day.
 - Python 3 is the only thing the build needs. It is already installed on most Macs, and is a free download for Windows.
