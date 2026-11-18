@@ -355,6 +355,12 @@ ARTICLE_CSS = """
 .point p{margin:8px 0 0;font-size:17px;line-height:1.65;color:%BODY%}
 .art figure{margin:30px 0 6px}
 .art figcaption{margin-top:10px;font-size:14px;line-height:1.5;color:%MUTED%}
+.more{display:inline-flex;align-items:center;gap:6px;margin-top:12px;min-height:42px;padding:8px 14px;border:1px solid #E4E1DB;border-radius:999px;color:#4A4E57!important;font-size:15px;line-height:1.35;text-decoration:none}
+.video{margin-top:14px}
+.video .frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0B1530}
+.video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.video figcaption{margin-top:8px;font-size:14px;line-height:1.5;color:%MUTED%}
+.video figcaption a{color:%INK_RED%}
 .art .end{margin:30px 0 26px;padding:20px 22px;background:#FCEDEA;border-radius:14px;font-size:19px;line-height:1.55;font-weight:600;color:%INK%}
 @media (max-width:640px){
   .art{padding:6px 18px 6px}
@@ -365,6 +371,20 @@ ARTICLE_CSS = """
   .art figcaption{font-size:15px}
 }
 """
+
+
+def extra_html(x, ext):
+    """A link button or an embedded YouTube video, placed under a point or paragraph."""
+    if x[0] == 'link':
+        return f'<a class="more" href="{a(x[2])}"{ext}>{e(x[1])} <span aria-hidden="true">↗</span></a>'
+    if x[0] == 'video':
+        vid, title, caption = x[1], x[2], x[3]
+        watch = f'https://www.youtube.com/watch?v={vid}'
+        return (f'<figure class="video"><div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" title="{a(title)}" loading="lazy" '
+                f'allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '
+                f'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
+                f'<figcaption>{e(caption)} <a href="{watch}"{ext}>Watch on YouTube ↗</a></figcaption></figure>')
+    return ''
 
 
 def article_body(issue, A, canvas=False):
@@ -389,7 +409,10 @@ def article_body(issue, A, canvas=False):
         elif kind == 'quote':
             out.append(f'<blockquote class="pull"><p>{says(b[1])}</p><cite>{e(b[2])}</cite></blockquote>')
         elif kind == 'point':
-            points.append(f'<div class="point"><span class="pn">{e(b[1])}</span><div><h3><span class="say">{e(b[2])}</span></h3><p>{says(b[3])}</p></div></div>')
+            extra = ''.join(extra_html(x, ext) for x in (b[4] if len(b) > 4 else []))
+            points.append(f'<div class="point"><span class="pn">{e(b[1])}</span><div><h3><span class="say">{e(b[2])}</span></h3><p>{says(b[3])}</p>{extra}</div></div>')
+        elif kind in ('video', 'link'):
+            out.append(extra_html(b, ext))
         elif kind == 'fig':
             onerr = '' if canvas else ' onerror="this.closest(\'figure\').remove()"'
             cap = f'<figcaption>{e(b[3])}</figcaption>' if len(b) > 3 and b[3] else ''
