@@ -14,7 +14,7 @@ ISSUE = {
     # Web page
     'kicker': 'AI × MARKETING',
     'title': 'Half your ad money is wasted. AI now knows which half.',
-    'page_meta': 'A four-minute read by Srihari.',
+    'page_meta': 'By Srihari.',
     'cover': 'images/cover-2.jpg',
     'cover_alt': 'A person drawn in glowing blue lines looks through a magnifying lens; inside it, a shopping street turns into ad cards, charts and a customer path, with the Analytics Club logo on a billboard',
     'cover_bg': '#0B1530',
@@ -23,9 +23,9 @@ ISSUE = {
 
     # Email
     'subject': 'PerSPective #1: Half your ad money is wasted. AI now knows which half.',
-    'preheader': 'AI × Marketing, by Srihari. A four-minute read for your Sunday.',
+    'preheader': 'AI × Marketing, by Srihari. Something good to read this Sunday.',
     'intro_text': 'This is the first PerSPective. Every other Sunday, someone from the batch picks one field and looks at what AI is really changing there. We’re starting with marketing.',
-    'email_kicker': 'AI × Marketing, a four-minute read with two short videos',
+    'email_kicker': 'AI × Marketing, with two short videos',
     'email_headline': 'Half your ad money is wasted. AI now knows which half.',
     'email_teaser': 'A 19th-century retailer famously said half his advertising was wasted, he just didn’t know which half. Today a model can tell you, down to the ad set and the hour. Srihari looks at what that changes for marketers, and what happens when the algorithm runs the brand voice on its own.',
     'email_byline': 'Written by Srihari',
