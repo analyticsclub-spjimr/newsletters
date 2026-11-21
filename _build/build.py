@@ -598,6 +598,11 @@ a[x-apple-data-detectors]{color:inherit!important;text-decoration:none!important
 def email_html(issue):
     n = newsletter(issue['newsletter'])
     inner = email_inner(issue, site_assets(issue))
+    # The preview line is visible on purpose: Chrome drops hidden text when the email is copied into Gmail,
+    # so a visible first line is the only way to control what Gmail shows next to the subject.
+    if issue.get('preheader'):
+        top = '<tr><td class="outer" align="center" style="padding:20px 10px;">\n'
+        inner = inner.replace(top, top + f'<p style="max-width:560px;margin:0 auto 12px auto;padding:0 10px;font-family:{SANS};font-size:14px;line-height:20px;color:{MUTED};text-align:center;">{e(issue["preheader"])}</p>\n', 1)
     inner = inner.replace('<tr><td class="outer" align="center" style="padding:20px 10px;">\n',
                           '<tr><td class="outer" align="center" style="padding:20px 10px;">\n<!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->\n', 1)
     inner = inner.replace('</table>\n</td></tr></table>', '</table>\n<!--[if mso]></td></tr></table><![endif]-->\n</td></tr></table>', 1)
@@ -616,7 +621,6 @@ def email_html(issue):
 <style>{EMAIL_CSS}</style>
 </head>
 <body style="margin:0;padding:0;background-color:#F7ECE8;">
-<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#F7ECE8;opacity:0;">{e(issue["preheader"])}&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;</div>
 {inner}
 </body>
 </html>

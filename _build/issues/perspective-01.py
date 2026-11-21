@@ -22,8 +22,9 @@ ISSUE = {
     'reply_small': 'Reply to the PerSPective mail and tell us.',
 
     # Email
-    'subject': 'PerSPective #1: Half your ad money is wasted. AI now knows which half.',
-    'preheader': 'AI × Marketing, by Srihari. Something good to read this Sunday.',
+    'subject': 'That ad wasn’t a coincidence | PerSPective #1',
+    # 'preheader' is the small line at the very top of the email. Gmail shows it next to the subject in the inbox.
+    'preheader': 'How AI decides which ads you see, explained without the jargon. By Srihari.',
     'intro_text': 'This is the first PerSPective. Every other Sunday, someone from the batch picks one field and looks at what AI is really changing there. We’re starting with marketing.',
     'email_kicker': 'AI × Marketing, with two short videos',
     'email_headline': 'Half your ad money is wasted. AI now knows which half.',
