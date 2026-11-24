@@ -22,8 +22,34 @@ SANS = "'Helvetica Neue',Helvetica,Arial,sans-serif"
 FONT_LINK = '<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&amp;display=swap" rel="stylesheet">'
 
 
+NB = ' '  # non-breaking space
+
+
+def tie(t):
+    """Neat line endings: never leave one short word alone on the last line,
+    and never split names like "S. P. Jain" or "₹7,465 crore" across lines."""
+    t = t.replace('S. P. Jain', f'S.{NB}P.{NB}Jain')
+    t = re.sub(r'(?<=[₹$\d]) (?=(?:crore|lakh|billion|million|trillion|per cent)\b)', NB, t)
+    t = re.sub(r'\b(No\.|Vol\.|Mr\.|Dr\.|Ms\.) (?=\S)', lambda m: m.group(1) + NB, t)
+    # Tie the last two words of every sentence-ending stretch, if they are short enough to move together.
+    def last_two(m):
+        a_, b_ = m.group(1), m.group(2)
+        if len(a_) + len(b_) > 18:
+            return m.group(0)
+        # A plain hyphen would still let "six-minute read" break after "six-", so use a non-breaking one.
+        return f'{a_}{NB}{b_}'.replace('-', '‑')
+    if len(t.split()) >= 4:
+        t = re.sub(r'(\S+) (\S+)\s*$', last_two, t)
+    return t
+
+
 def e(t):
     return escape(t, quote=False)
+
+
+def et(t):
+    """Like e(), with neat line endings. Used only in the email."""
+    return escape(tie(t), quote=False)
 
 
 def a(t):
@@ -233,13 +259,16 @@ def page_body(issue, A, canvas=False):
             fig = (f'<figure><a href="{p}"{ext}><img src="{p}" alt="{a(s["pic"]["alt"])}" width="1600" height="800" '
                    f'loading="lazy"{onerr}></a></figure>')
         srcs = ''.join(f'<a href="{a(u)}"{ext}>{e(name)} <span aria-hidden="true">↗</span></a>' for name, u in s['sources'])
+        # Optional small note under a story (a disclosure, a "watch this" line). Styled inline so older pages stay unchanged.
+        note = (f'\n        <p class="note" style="margin:14px 0 0;font-size:15px;line-height:1.55;color:#6B6F78;font-style:italic">{says(s["note"])}</p>'
+                if s.get('note') else '')
         arts.append(f'''
       <article id="story-{s["num"]}">
         {fig}
         <div class="tagrow"><span class="n">{s["num"]}</span><span class="tag">{e(s["tag"])}</span><button class="listen" type="button" data-target="story-{s["num"]}" data-label="Listen" aria-pressed="false"><span class="ico" aria-hidden="true"></span><span class="lbl">Listen</span></button></div>
         <h2><span class="say">{e(s["headline"])}</span></h2>
         <p class="body">{says(s["body"])}</p>
-        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p>{says(s["why"])}</p></div>
+        <div class="why"><h3 class="say" data-say="Why it matters."><span class="dot"></span>Why it matters</h3><p>{says(s["why"])}</p></div>{note}
         <div class="sources">{srcs}</div>
       </article>''')
     stamp = f'<span class="stamp">{"<br>".join(e(x) for x in issue["stamp"])}</span>' if issue.get('stamp') else ''
@@ -487,7 +516,7 @@ def launch_intro(issue):
         desc = n['about'] + (' You’re reading the first one.' if first else '')
         return (f'<tr><td style="padding:12px 0;border-top:1px solid #F0DCD5;">'
                 f'<div style="font-family:{WORD};font-size:18px;line-height:23px;font-weight:bold;color:{INK};">{wordmark(n)}{pill}</div>'
-                f'<div style="padding-top:3px;font-family:{SANS};font-size:16px;line-height:24px;color:#4A4E57;">{e(desc)}</div></td></tr>')
+                f'<div style="padding-top:3px;font-family:{SANS};font-size:16px;line-height:24px;color:#4A4E57;">{et(desc)}</div></td></tr>')
 
     rows = ''.join(row(n, n['id'] == issue['newsletter']) for n in C.NEWSLETTERS)
     return f'''
@@ -495,7 +524,7 @@ def launch_intro(issue):
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FDF5F2" style="background-color:#FDF5F2;border:1px solid #F2DDD6;border-radius:14px;">
   <tr><td style="padding:20px 20px 8px 20px;">
     <p style="margin:0;font-family:{SANS};font-size:18px;line-height:25px;font-weight:bold;color:{INK};">Hi everyone,</p>
-    <p style="margin:10px 0 12px 0;font-family:{SANS};font-size:17px;line-height:26px;color:{BODY};">This is the {e(C.CLUB)}! We’re starting a set of newsletters so that all of us can keep up with AI without having to chase it ourselves. There’ll be three:</p>
+    <p style="margin:10px 0 12px 0;font-family:{SANS};font-size:17px;line-height:26px;color:{BODY};">This is the {et(C.CLUB)}! We’re starting a set of newsletters so that all of us can keep up with AI without having to chase it ourselves. There’ll be three:</p>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">{rows}
       <tr><td style="padding:12px 0 10px 0;border-top:1px solid #F0DCD5;font-family:{SANS};font-size:17px;line-height:26px;color:{BODY};">Have a read, and let us know what you think. Just reply to this mail.</td></tr>
     </table>
@@ -515,10 +544,10 @@ def email_inner(issue, A):
     if issue.get('intro_text'):
         intro = (f'\n<tr><td class="px" style="padding:24px 24px 0 24px;">\n  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FDF5F2" style="background-color:#FDF5F2;border:1px solid #F2DDD6;border-radius:14px;">\n'
                  f'  <tr><td style="padding:18px 20px;">\n    <p style="margin:0;font-family:{SANS};font-size:18px;line-height:25px;font-weight:bold;color:{INK};">Hi everyone,</p>\n'
-                 f'    <p style="margin:8px 0 0 0;font-family:{SANS};font-size:17px;line-height:26px;color:{BODY};">{e(issue["intro_text"])}</p>\n  </td></tr></table>\n</td></tr>\n')
-    byline = (f'\n  <p style="margin:12px 0 0 0;font-family:{SANS};font-size:15px;line-height:22px;color:{MUTED};">{e(issue["email_byline"])}</p>'
+                 f'    <p style="margin:8px 0 0 0;font-family:{SANS};font-size:17px;line-height:26px;color:{BODY};">{et(issue["intro_text"])}</p>\n  </td></tr></table>\n</td></tr>\n')
+    byline = (f'\n  <p style="margin:12px 0 0 0;font-family:{SANS};font-size:15px;line-height:22px;color:{MUTED};">{et(issue["email_byline"])}</p>'
               if issue.get('email_byline') else '')
-    button = e(issue.get('button', 'Read the full issue'))
+    button = et(issue.get('button', 'Read the full issue'))
     cover_bg = issue.get('cover_bg', '#F3E6E1')
     return f'''<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F7ECE8" style="background-color:#F7ECE8;">
 <tr><td class="outer" align="center" style="padding:20px 10px;">
@@ -530,19 +559,19 @@ def email_inner(issue, A):
       <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td width="44" height="44" align="center" valign="middle" bgcolor="#EFE8F6" style="width:44px;height:44px;background-color:#EFE8F6;border-radius:10px;font-family:Arial,sans-serif;font-size:14px;line-height:44px;font-weight:bold;color:#522381;text-align:center;"><img src="{A["logo"]}" width="44" height="44" alt="AIC" style="display:block;width:44px;height:44px;border:0;border-radius:10px;font-family:Arial,sans-serif;font-size:14px;line-height:44px;font-weight:bold;color:#522381;text-align:center;"></td></tr></table>
     </td>
     <td valign="middle" style="padding-left:10px;font-family:{SANS};white-space:nowrap;">
-      <div style="font-size:16px;line-height:20px;font-weight:bold;color:{INK};">{e(C.CLUB)}</div>
-      <div style="font-size:12px;line-height:16px;letter-spacing:2px;color:{MUTED};">{e(C.SCHOOL_SHORT)}</div>
+      <div style="font-size:16px;line-height:20px;font-weight:bold;color:{INK};">{et(C.CLUB)}</div>
+      <div style="font-size:12px;line-height:16px;letter-spacing:2px;color:{MUTED};">{et(C.SCHOOL_SHORT)}</div>
     </td>
+    <td valign="middle" align="right" style="text-align:right;font-family:{TYPE};font-size:12px;line-height:18px;letter-spacing:1px;color:{MUTED};white-space:nowrap;">ISSUE {issue["number"]:02d}<br>{et(issue["date_short"])}</td>
   </tr></table>
 </td></tr>
 
-<tr><td class="px" style="padding:18px 24px 20px 24px;border-bottom:1px solid #EEECE7;">
+<tr><td class="px" style="padding:22px 24px 22px 24px;border-bottom:1px solid #EEECE7;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
     <td valign="bottom" style="text-align:left;">
       <div class="wm" style="font-family:{WORD};font-size:44px;line-height:48px;font-weight:bold;color:{INK};letter-spacing:-0.5px;">{wordmark(n)}</div>
-      <div style="padding-top:4px;font-family:{SANS};font-size:16px;line-height:22px;color:{MUTED};">{e(n["tagline"])}</div>
+      <div style="padding-top:8px;font-family:{SANS};font-size:16px;line-height:22px;color:{MUTED};">{et(n["tagline"])}</div>
     </td>
-    <td valign="bottom" align="right" style="padding-bottom:4px;text-align:right;font-family:{TYPE};font-size:12px;line-height:18px;letter-spacing:1px;color:{MUTED};white-space:nowrap;">ISSUE {issue["number"]:02d}<br>{e(issue["date_short"])}</td>
   </tr></table>
 </td></tr>
 {intro}
@@ -553,9 +582,9 @@ def email_inner(issue, A):
 </td></tr>
 
 <tr><td class="px" style="padding:24px 24px 0 24px;">
-  <p style="margin:0 0 10px 0;font-family:{SANS};font-size:15px;line-height:22px;color:{MUTED};">{e(issue["email_kicker"])}</p>
-  <h2 class="hl" style="margin:0;font-family:{SANS};font-size:28px;line-height:34px;font-weight:bold;color:{INK};letter-spacing:-0.5px;">{e(issue["email_headline"])}</h2>
-  <p style="margin:12px 0 0 0;font-family:{SANS};font-size:17px;line-height:27px;color:{BODY};">{e(issue["email_teaser"])}</p>{byline}
+  <p style="margin:0 0 10px 0;font-family:{SANS};font-size:15px;line-height:22px;color:{MUTED};">{et(issue["email_kicker"])}</p>
+  <h2 class="hl" style="margin:0;font-family:{SANS};font-size:28px;line-height:34px;font-weight:bold;color:{INK};letter-spacing:-0.5px;">{et(issue["email_headline"])}</h2>
+  <p style="margin:12px 0 0 0;font-family:{SANS};font-size:17px;line-height:27px;color:{BODY};">{et(issue["email_teaser"])}</p>{byline}
 </td></tr>
 
 <tr><td class="px btn" style="padding:24px 24px 0 24px;">
@@ -566,15 +595,15 @@ def email_inner(issue, A):
 <tr><td class="px" style="padding:30px 24px 0 24px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{INK}" style="background-color:{INK};border-radius:16px;">
   <tr><td style="padding:22px 22px;">
-    <p style="margin:0;font-family:{SANS};font-size:18px;line-height:25px;font-weight:bold;color:#FFFFFF;">{e(issue.get("reply_big", "Spotted a story we missed?"))}</p>
-    <p style="margin:6px 0 0 0;font-family:{SANS};font-size:16px;line-height:24px;color:#C9CCD3;">{e(issue.get("email_reply_small", "Reply to this mail and tell us."))}</p>
-    <p style="margin:16px 0 0 0;padding-top:14px;border-top:1px solid #2A2D35;font-family:{SANS};font-size:15px;line-height:20px;color:#A3A7B0;">Follow the {e(C.CLUB)}</p>
+    <p style="margin:0;font-family:{SANS};font-size:18px;line-height:25px;font-weight:bold;color:#FFFFFF;">{et(issue.get("reply_big", "Spotted a story we missed?"))}</p>
+    <p style="margin:6px 0 0 0;font-family:{SANS};font-size:16px;line-height:24px;color:#C9CCD3;">{et(issue.get("email_reply_small", "Reply to this mail and tell us."))}</p>
+    <p style="margin:16px 0 0 0;padding-top:14px;border-top:1px solid #2A2D35;font-family:{SANS};font-size:15px;line-height:20px;color:#A3A7B0;">Follow the {et(C.CLUB)}</p>
     <p style="margin:10px 0 0 0;line-height:46px;"><a href="{C.LINKEDIN}" style="{pill}">LinkedIn</a>&nbsp;&nbsp;<a href="{C.INSTAGRAM}" style="{pill}">Instagram</a></p>
   </td></tr></table>
 </td></tr>
 
 <tr><td class="px" style="padding:18px 24px 26px 24px;font-family:{SANS};font-size:13px;line-height:20px;color:{MUTED};">
-  <strong style="color:{INK};">{e(n["name"])}</strong> is put together by the {e(C.CLUB)}, {e(C.SCHOOL_FULL)}.
+  <strong style="color:{INK};">{et(n["name"])}</strong> is put together by the {et(C.CLUB)}, {et(C.SCHOOL_FULL)}.
 </td></tr>
 
 </table>
@@ -602,7 +631,7 @@ def email_html(issue):
     # so a visible first line is the only way to control what Gmail shows next to the subject.
     if issue.get('preheader'):
         top = '<tr><td class="outer" align="center" style="padding:20px 10px;">\n'
-        inner = inner.replace(top, top + f'<p style="max-width:560px;margin:0 auto 12px auto;padding:0 10px;font-family:{SANS};font-size:14px;line-height:20px;color:{MUTED};text-align:center;">{e(issue["preheader"])}</p>\n', 1)
+        inner = inner.replace(top, top + f'<p style="max-width:560px;margin:0 auto 12px auto;padding:0 10px;font-family:{SANS};font-size:14px;line-height:20px;color:{MUTED};text-align:center;">{et(issue["preheader"])}</p>\n', 1)
     inner = inner.replace('<tr><td class="outer" align="center" style="padding:20px 10px;">\n',
                           '<tr><td class="outer" align="center" style="padding:20px 10px;">\n<!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" align="center"><tr><td><![endif]-->\n', 1)
     inner = inner.replace('</table>\n</td></tr></table>', '</table>\n<!--[if mso]></td></tr></table><![endif]-->\n</td></tr></table>', 1)
@@ -616,7 +645,7 @@ def email_html(issue):
 <meta name="color-scheme" content="light">
 <meta name="supported-color-schemes" content="light">
 <meta name="subject" content="{a(issue["subject"])}">
-<title>{e(n["name"])} · Issue {issue["number"]}</title>
+<title>{et(n["name"])} · Issue {issue["number"]}</title>
 <!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]-->
 <style>{EMAIL_CSS}</style>
 </head>
@@ -706,6 +735,67 @@ def all_issues():
     return [load_issue(p) for p in sorted(glob.glob(os.path.join(HERE, 'issues', '*.py')))]
 
 
+# ------------------------------------------------------------------ neatness check
+# Word ranges that keep a phone screen looking even. On a phone, 10 words is about one line.
+# Paragraphs inside one issue should also sit close to each other in length.
+LIMITS = {
+    'paragraph': (35, 70),     # PerSPective body paragraphs
+    'point': (40, 80),         # PerSPective numbered points
+    'story': (50, 75),         # DiSPatch story text
+    'why': (25, 45),           # DiSPatch "Why it matters"
+    'caption': (4, 18),
+    'email_teaser': (30, 55),
+    'intro_text': (15, 45),
+}
+CHARS = {'title': 70, 'headline': 70, 'email_headline': 70, 'subject': 55, 'preheader': (60, 100)}
+
+
+def words(t):
+    return len(re.sub(r'\*\*', '', t).split())
+
+
+def check(issue):
+    """Prints notes (it never stops the build) when something would look uneven."""
+    notes = []
+
+    def rng(kind, label, text):
+        lo, hi = LIMITS[kind]
+        w = words(text)
+        if not lo <= w <= hi:
+            notes.append(f'{label}: {w} words (aim for {lo} to {hi})')
+        return w
+
+    for k in ('email_teaser', 'intro_text'):
+        if issue.get(k):
+            rng(k, k, issue[k])
+    for k in ('title', 'email_headline', 'subject'):
+        if issue.get(k) and len(issue[k]) > CHARS[k]:
+            why = 'or Gmail on a phone cuts it off' if k == 'subject' else 'so it fits in two lines'
+            notes.append(f'{k}: {len(issue[k])} characters (keep under {CHARS[k]} {why})')
+    if issue.get('preheader'):
+        lo, hi = CHARS['preheader']
+        if not lo <= len(issue['preheader']) <= hi:
+            notes.append(f'preheader: {len(issue["preheader"])} characters (aim for {lo} to {hi})')
+
+    paras = []
+    for i, b in enumerate(issue['body'], 1):
+        if b[0] == 'p':
+            paras.append(rng('paragraph', f'paragraph {i} "{b[1][:30]}…"', b[1]))
+        elif b[0] == 'point':
+            rng('point', f'point {b[1]}', b[3])
+        elif b[0] == 'fig' and len(b) > 3 and b[3]:
+            rng('caption', f'caption "{b[3][:30]}…"', b[3])
+    for s in issue['stories']:
+        paras.append(rng('story', f'story {s["num"]}', s['body']))
+        rng('why', f'story {s["num"]} why-it-matters', s['why'])
+        if len(s['headline']) > CHARS['headline']:
+            notes.append(f'story {s["num"]} headline: {len(s["headline"])} characters (keep under {CHARS["headline"]})')
+    if len(paras) > 2 and max(paras) > 2 * min(paras):
+        notes.append(f'paragraphs range from {min(paras)} to {max(paras)} words; keep the longest under twice the shortest')
+    for n_ in notes:
+        print(f'  neatness ({issue["key"]}): {n_}')
+
+
 def main(args):
     issues = all_issues()
     wanted = [i for i in issues if not args or i['key'] in args]
@@ -718,6 +808,7 @@ def main(args):
         cover = os.path.join(ROOT, i['folder'], i['cover'])
         if not os.path.exists(cover):
             print(f'  note: {i["folder"]}/{i["cover"]} is missing. Add the picture before publishing.')
+        check(i)
         write(i['folder'] + '/index.html', page_html(i))
         write(i['folder'] + '/email.html', email_html(i))
         print(f'built {i["folder"]}/index.html and email.html')
