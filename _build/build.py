@@ -31,6 +31,8 @@ def tie(t):
     t = t.replace('S. P. Jain', f'S.{NB}P.{NB}Jain')
     t = re.sub(r'(?<=[₹$\d]) (?=(?:crore|lakh|billion|million|trillion|per cent)\b)', NB, t)
     t = re.sub(r'\b(No\.|Vol\.|Mr\.|Dr\.|Ms\.) (?=\S)', lambda m: m.group(1) + NB, t)
+    # Keep names like GPT-6.2 or COVID-19 whole: no line break after the hyphen.
+    t = re.sub(r'(?<=[A-Za-z])-(?=\d)', '\u2011', t)
     # Tie the last two words of every sentence-ending stretch, if they are short enough to move together.
     def last_two(m):
         a_, b_ = m.group(1), m.group(2)
