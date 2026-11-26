@@ -45,16 +45,16 @@ STORIES = [{'num': '01',
           'intelligence had targeted him. Six days before the reversal, the board’s chair said Huang would not return. '
           'After input from senior US officials, the board concluded his return posed no national-security risk. '
           'President Trump, who had urged the move, called it “correct and proper”.',
-  'why': 'Investors call this key-person risk, and the market just put a price on it. Nvidia’s shares jumped by about '
-         'a third on the news. Since their 6 October peak they had lost nearly half their value, hit by an AI '
-         'sell-off, Huang’s exit and a Reuters report that SEC staff were examining possible accounting problems. The '
-         'board’s inquiry is still open.',
+  'why': 'Investors call this key-person risk, and the market just put a price on it. Nvidia’s shares jumped 31.5% '
+         'that day, their biggest one-day gain on record. Since their 6 October peak they had lost nearly half their '
+         'value, hit by an AI sell-off, Huang’s exit and a Reuters report that SEC staff were examining possible '
+         'accounting problems. The board’s inquiry is still open.',
   'pic': {'label': 'CHART FOR THIS STORY',
           'desc': 'Nvidia’s share price, October to November 2026',
-          'file': 'images/nvidia-chart.jpg',
+          'file': 'images/nvidia-chart-2.jpg',
           'alt': 'Line chart of Nvidia’s closing share price from 1 October to 20 November 2026: a record $239 on 6 '
                  'October, an AI sell-off on 5 November, Huang resigning on 12 November, a 14% fall on 20 November '
-                 'after a report of an SEC probe, and a jump of about a third on 23 November when he returned'},
+                 'after a report of an SEC probe, and a 31.5% jump to $165 on 23 November when he returned'},
   'sources': [('Nvidia (reinstatement filing)',
                'https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000090/nov23pressrelease.htm'),
               ('Reuters via Yahoo Finance',
@@ -133,7 +133,7 @@ STORIES = [{'num': '01',
          'handle both.',
   'note': 'India watch: rules for consent managers under the data protection law took effect on 13 November, with most '
           'other obligations starting on 13 May 2027. The AI rules paper that IT Minister Ashwini Vaishnaw promised on '
-          '8 October “within a month” has still not been released.',
+          '8 October “within a month” is still not out; on 25 November, officials said it was in its final stages.',
   'sources': [('EUR-Lex (AI Omnibus)', 'https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng'),
               ('White & Case', 'https://www.whitecase.com/insight-alert/eu-ai-omnibus-enters-force-amending-ai-act'),
               ('MediaNama (IT Rules)',
